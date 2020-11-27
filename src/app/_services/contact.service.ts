@@ -5,17 +5,18 @@ import { Observable } from 'rxjs';
 const AUTH_API = 'https://keyshop.herokuapp.com/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+})
 };
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ContactService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<any> {
-    return this.http.get(AUTH_API + 'product/', httpOptions);
+  postContactForm(name: string, email: string, phoneNumber: string, message: string): Observable<any> {
+    return this.http.post(AUTH_API + 'contact/create/', {name, email, phoneNumber, message}, httpOptions);
   }
 }

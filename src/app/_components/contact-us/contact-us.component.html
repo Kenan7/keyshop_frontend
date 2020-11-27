@@ -1,0 +1,54 @@
+<div class="mail">
+  <div class="container">
+    <h3>İletişim</h3>
+    <div class="agile_mail_grids">
+      <div class="col-md-5 contact-left">
+        <h4>Adres</h4>
+        <p>
+          Mersin Üniversitesi Mühendislik Fakültesi
+          <span>Yenişehir/MERSİN</span>
+        </p>
+        <ul>
+          <li>Telefon :+1 078 4589 2456</li>
+          <li>Fax :+1 078 4589 2456</li>
+          <li><a href="mailto:info@example.com">keyshop@example.com</a></li>
+        </ul>
+      </div>
+      <div class="col-md-7 contact-left">
+        <h4>İletişim Formu</h4>
+        <form (submit)="createContactForm()">
+          <input
+            type="text"
+            name="Name"
+            placeholder="Adınız"
+            required=""
+            [(ngModel)]="name"
+          />
+          <input
+            type="email"
+            name="Email"
+            placeholder="Mail Adresiniz"
+            required=""
+            [(ngModel)]="email"
+          />
+          <input
+            type="text"
+            name="Telephone"
+            placeholder="Telefon No"
+            required=""
+            [(ngModel)]="phoneNumber"
+          />
+          <textarea
+            name="message"
+            placeholder="Mesajınız"
+            required=""
+            [(ngModel)]="message"
+          ></textarea>
+          <input type="submit" value="Gönder" />
+        </form>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<!-- //mail -->
