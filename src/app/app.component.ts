@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
   errorMessage = '';
 
 
-  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService) { }
+  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -40,11 +41,11 @@ export class AppComponent implements OnInit {
     window.location.reload();
   }
 
-  showReg() {
+  showReg(): void {
     this.reg = true;
     this.log = false;
   }
-  showLog() {
+  showLog(): void {
     this.reg = false;
     this.log = true;
   }
@@ -57,12 +58,15 @@ export class AppComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorageService.getUser().roles;
-        this.reloadPage();
+
+        this.toastr.success('Giriş başarılı');
+
       },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.toastr.error('Giriş başarısız');
+
       }
     );
   }
