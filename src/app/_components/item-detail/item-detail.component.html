@@ -27,41 +27,19 @@
     <div class="col-md-4 single-left">
       <div class="flexslider">
         <ul class="slides">
-          <li data-thumb="images/a.jpg">
-            <div class="thumb-image">
-              <img
-                src="images/a.jpg"
-                data-imagezoom="true"
-                class="img-responsive"
-                alt=""
-              />
-            </div>
-          </li>
-          <li data-thumb="images/b.jpg">
-            <div class="thumb-image">
-              <img
-                src="images/b.jpg"
-                data-imagezoom="true"
-                class="img-responsive"
-                alt=""
-              />
-            </div>
-          </li>
-          <li data-thumb="images/c.jpg">
-            <div class="thumb-image">
-              <img
-                src="images/c.jpg"
-                data-imagezoom="true"
-                class="img-responsive"
-                alt=""
-              />
-            </div>
-          </li>
+          <div class="thumb-image">
+            <img
+              [src]="item.image"
+              data-imagezoom="true"
+              class="img-responsive"
+              alt=""
+            />
+          </div>
         </ul>
       </div>
     </div>
     <div class="col-md-8 single-right">
-      <h3>The Best 3GB RAM Mobile Phone</h3>
+      <h3>{{ item.item_name }}</h3>
       <div class="rating1">
         <span class="starRating">
           <input id="rating5" type="radio" name="rating" value="5" />
@@ -79,14 +57,10 @@
       <div class="description">
         <h5><i>Description</i></h5>
         <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-          odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-          voluptatem sequi nesciunt.
+          {{ item.description }}
         </p>
       </div>
-      <div class="color-quality">
+      <div class="color-quality" *ngIf="detailss">
         <div class="color-quality-left">
           <h5>Color :</h5>
           <ul>
@@ -131,7 +105,7 @@
         </div>
         <div class="clearfix"></div>
       </div>
-      <div class="occasional">
+      <div class="occasional" *ngIf="detailss">
         <h5>RAM :</h5>
         <div class="colr ert">
           <div class="check">
@@ -171,7 +145,7 @@
     <div class="clearfix"></div>
   </div>
 </div>
-<div class="additional_info">
+<!-- <div class="additional_info">
   <div class="container">
     <div class="sap_tabs">
       <div id="horizontalTab1" style="display: block; width: 100%; margin: 0px">
@@ -353,7 +327,7 @@ Add Your Review</textarea
       });
     </script>
   </div>
-</div>
+</div> -->
 
 <div
   class="modal video-modal fade"
@@ -696,20 +670,3 @@ Add Your Review</textarea
   </div>
 </div>
 <!-- //single -->
-<!-- newsletter -->
-<div class="newsletter">
-  <div class="container">
-    <div class="col-md-6 w3agile_newsletter_left">
-      <h3>Newsletter</h3>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
-    </div>
-    <div class="col-md-6 w3agile_newsletter_right">
-      <form action="#" method="post">
-        <input type="email" name="Email" placeholder="Email" required="" />
-        <input type="submit" value="" />
-      </form>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-</div>
-<!-- //newsletter -->

@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'item', component: ItemDetailComponent },
+  { path: 'urun/:id', component: ItemDetailComponent },
   { path: 'iletisim', component: ContactUsComponent },
   { path: 'hakkimizda', component: AboutUsComponent },
 ];
