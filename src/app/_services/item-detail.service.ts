@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// const AUTH_API = 'https://keyshop.herokuapp.com/';
-const AUTH_API = 'http://localhost:8000/';
+const AUTH_API = 'https://keyshop.herokuapp.com/';
+// const AUTH_API = 'http://localhost:8000/';
 
 @Injectable({
   providedIn: 'root'
