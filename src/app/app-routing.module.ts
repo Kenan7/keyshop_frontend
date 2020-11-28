@@ -7,15 +7,16 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ItemDetailComponent } from './_components/item-detail/item-detail.component';
 import { ContactUsComponent } from './_components/contact-us/contact-us.component';
+import { AboutUsComponent } from './_components/about-us/about-us.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'item', component: ItemDetailComponent },
-  { path: 'contact', component: ContactUsComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'iletisim', component: ContactUsComponent },
+  { path: 'hakkimizda', component: AboutUsComponent },
 ];
 
 @NgModule({

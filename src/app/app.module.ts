@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,6 +18,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ItemDetailComponent } from './_components/item-detail/item-detail.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { ContactUsComponent } from './_components/contact-us/contact-us.component';
+import { AboutUsComponent } from './_components/about-us/about-us.component';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { ContactUsComponent } from './_components/contact-us/contact-us.componen
     ItemDetailComponent,
     FooterComponent,
     ContactUsComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,
