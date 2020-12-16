@@ -19,6 +19,7 @@ import { ItemDetailComponent } from './_components/item-detail/item-detail.compo
 import { FooterComponent } from './_components/footer/footer.component';
 import { ContactUsComponent } from './_components/contact-us/contact-us.component';
 import { AboutUsComponent } from './_components/about-us/about-us.component';
+import { ShoppingCartComponent } from './_components/shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AboutUsComponent } from './_components/about-us/about-us.component';
     FooterComponent,
     ContactUsComponent,
     AboutUsComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,

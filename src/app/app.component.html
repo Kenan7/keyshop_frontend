@@ -184,16 +184,16 @@
         </div>
       </div>
       <div class="cart cart box_1">
-          <button class="w3view-cart" type="submit" name="submit" value="" (mouseover)="dropdown=true" (mouseout)="dropdown=false">
+          <button class="w3view-cart" type="submit" name="submit" value="" routerLink="/cart">
             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
           </button>
 
-          <div *ngIf="dropdown">
+          <!-- <div *ngIf="dropdown">
             <div *ngFor="let product of sebet">
               <p>{{ product.item_name }}</p>
               <p> {{ product.price }}</p>
             </div>
-          </div>
+          </div> -->
       </div>
     </div>
   </div>
