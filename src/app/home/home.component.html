@@ -105,7 +105,7 @@
               <input type="hidden" name="add" value="1" />
               <input type="hidden" name="w3ls_item" value="Red Laptop" />
               <input type="hidden" name="amount" [value]="product.price" />
-              <button type="submit" class="w3ls-cart">Add to cart</button>
+              <button type="submit" class="w3ls-cart" (click)="addToCart(product)">Add to cart</button>
             </form>
           </div>
         </div>
