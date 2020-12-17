@@ -17,20 +17,37 @@ export class HomeComponent implements OnInit {
 	content: string;
 	productList: Product[] = [];
 	rawResponse: any;
+	categories: any;
+	result: any = [];
+	isClicked = false;
 
 	constructor(private userService: UserService, private productService: ProductService, private app: AppComponent) {}
 
 	ngOnInit(): void {
-		this.productService.getProducts().subscribe(
+		this.productService.getCategories().subscribe(
 			(data) => {
 				this.rawResponse = data;
-				this.productList = this.rawResponse.results;
-				console.log(this.productList);
+				this.result = this.rawResponse.results;
+				this.categories = this.result.map((item) => item.name);
 			},
 			(err) => {
 				this.content = JSON.parse(err.error).message;
 			}
 		);
+		// this.productService.getProducts().subscribe(
+		// 	(data) => {
+		// 		this.rawResponse = data;
+		// 		this.productList = this.rawResponse.results;
+		// 		console.log(this.productList);
+		// 	},
+		// 	(err) => {
+		// 		this.content = JSON.parse(err.error).message;
+		// 	}
+		// );
+	}
+
+	getProductsByCategory(id: any) {
+		return (this.productList = this.result.categories[id].products);
 	}
 
 	addToCart(item: Product) {
