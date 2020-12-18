@@ -13,17 +13,20 @@
         class="bs-example bs-example-tabs"
         role="tabpanel"
         data-example-id="togglable-tabs"
-      >
-        <ul id="myTab" class="nav nav-tabs" role="tablist">
-          <li role="presentation" *ngFor="let category of categories" >
-            <button
-              id="tab"
-              role="tab"
-              (click)="isClicked = !isClicked" [class.myClass]="isClicked"
-              >{{ category }}</button
-            >
-          </li>
-        </ul>
+    >
+            <ul id="myTab" class="nav nav-tabs" role="tablist">
+              <li role="presentation" *ngFor="let category of result; let i = index">
+                <a
+                  routerLink=""
+                  id="home-tab"
+                  role="tab"
+                  data-toggle="tab"
+                  aria-controls="home"
+                  (click)="getProductsByCategory(i)"
+                  >{{ category.name }}</a
+                >
+              </li>
+            </ul>
       </div>
     </div>
   </div>

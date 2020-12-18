@@ -3,6 +3,8 @@ import { AuthService } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from './interfaces/product';
+import { Router } from '@angular/router';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -21,26 +23,27 @@ export class AppComponent implements OnInit {
 	isLoginFailed = false;
 	errorMessage = '';
 	dropdown: any;
+	TOKEN_KEY = 'token';
 
 	sebet: Product[] = [];
 
 	constructor(
 		private tokenStorageService: TokenStorageService,
 		private authService: AuthService,
-		private toastr: ToastrService
+		private toastr: ToastrService,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
-		this.isLoggedIn = !!this.tokenStorageService.getToken();
+		this.isLoggedIn = this.authService.loggedIn();
 
 		if (this.isLoggedIn) {
-			const user = this.tokenStorageService.getUser();
-			this.username = user.username;
+			this.username = this.authService.getCurrentUserName();
 		}
 	}
 
 	logout(): void {
-		this.tokenStorageService.signOut();
+		this.authService.logOut();
 		window.location.reload();
 	}
 
@@ -53,21 +56,53 @@ export class AppComponent implements OnInit {
 		this.log = true;
 	}
 
+	async delay(ms: number) {
+		await new Promise((resolve) => setTimeout(() => resolve(), ms)).then(() => {});
+	}
+
 	onSubmit(): void {
 		this.authService.login(this.form).subscribe(
 			(data) => {
-				this.tokenStorageService.saveToken(data.accessToken);
-				this.tokenStorageService.saveUser(data);
+				localStorage.setItem(this.TOKEN_KEY, data.access);
+				localStorage.setItem('name', data.name);
+
+				this.toastr.success('Giriş başarılı');
 
 				this.isLoginFailed = false;
 				this.isLoggedIn = true;
 
-				this.toastr.success('Giriş başarılı');
+				this.delay(200).then((any) => {
+					window.location.reload();
+				});
 			},
 			(err) => {
 				this.errorMessage = err.error.message;
 				this.isLoginFailed = true;
 				this.toastr.error('Giriş başarısız');
+			}
+		);
+	}
+
+	onRegister(): void {
+		this.authService.register(this.form).subscribe(
+			(data) => {
+				localStorage.setItem(this.TOKEN_KEY, data.access);
+				localStorage.setItem('name', data.name);
+
+				this.toastr.success('Hesap oluşturuldu, Lütfen giriş yapın');
+
+				this.isLoginFailed = false;
+
+				// this.isLoggedIn = true;
+
+				this.delay(400).then((any) => {
+					window.location.reload();
+				});
+			},
+			(err) => {
+				this.errorMessage = err.error.message;
+				this.isLoginFailed = true;
+				this.toastr.error('Kayıt başarısız');
 			}
 		);
 	}
