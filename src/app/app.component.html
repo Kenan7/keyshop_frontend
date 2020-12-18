@@ -9,7 +9,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-lg">
-      <div class="modal-content" *ngIf="!isLoggedIn">
+      <div class="modal-content" *ngIf="authService.isLoggedOut$ | async">
         <div class="modal-header">
           <button
             type="button"
@@ -105,7 +105,7 @@
                           <input
                             placeholder="Soyadı"
                             name="lastName"
-                            type="text"
+                            type="email"
                             [(ngModel)]="form.last_name"
                             required=""
                           />
@@ -164,7 +164,7 @@
         </div>
       </div>
 
-      <div class="modal-content" *ngIf="isLoggedIn">
+      <div class="modal-content" *ngIf="authService.isLoggedIn$ | async">
         <div class="modal-header">
           <button
             type="button"
@@ -175,7 +175,7 @@
             &times;
           </button>
           <h4 class="modal-title" id="myModalLabel">
-            Hoşgeldin {{username}}
+            Hoşgeldin {{(authService.userInfo$ | async).first_name}}
           </h4>
         </div>
         <div class="modal-body modal-body-sub">
@@ -230,7 +230,7 @@
           </button>
 
           <!-- <div *ngIf="dropdown">
-            <div *ngFor="let product of sebet">
+            <div *ngFor="let product of sepet">
               <p>{{ product.item_name }}</p>
               <p> {{ product.price }}</p>
             </div>

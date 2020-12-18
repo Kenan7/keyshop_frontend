@@ -53,6 +53,18 @@ export class HomeComponent implements OnInit {
 	}
 
 	addToCart(item: Product) {
-		this.app.sebet.push(item);
+		if (this.app.sepet.length > 0) {
+			const id = item.id;
+			this.app.sepet.forEach((element) => {
+				if (item.id !== element.id) {
+					this.app.sepet.push(item);
+				} else {
+					element.amount += 1;
+				}
+			});
+		} else {
+			this.app.sepet.push(item);
+		}
+		localStorage.setItem(this.app.cart, JSON.stringify(this.app.sepet));
 	}
 }

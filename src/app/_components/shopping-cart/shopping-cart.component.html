@@ -1,5 +1,5 @@
 
-<div class="container mb-4" *ngIf="sebet.length > 0">
+<div class="container mb-4" *ngIf="sepet.length > 0">
   <div class="row">
       <div class="col-12">
           <div class="table-responsive">
@@ -15,7 +15,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let product of sebet">
+                      <tr *ngFor="let product of sepet">
                           <td><img
                             [src]="product.image"
                             class="img-responsive"
@@ -24,9 +24,9 @@
                           /> </td>
                           <td><p>{{ product.item_name }}</p></td>
                           <td>Mevcut</td>
-                          <td><input class="form-control" type="text" value="1" /></td>
-                          <td class="text-right">124,90 €</td>
-                          <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                          <td><input class="form-control" type="text" [value]="product.amount" /></td>
+                          <td class="text-right">{{ product.price }}</td>
+                          <td class="text-right"><button class="btn btn-sm btn-danger" (click)="removeFromCart(product.id)"><i class="fa fa-trash"></i> </button> </td>
                       </tr>
                       <tr>
                           <td></td>

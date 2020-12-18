@@ -21,29 +21,28 @@ import { ContactUsComponent } from './_components/contact-us/contact-us.componen
 import { AboutUsComponent } from './_components/about-us/about-us.component';
 import { ShoppingCartComponent } from './_components/shopping-cart/shopping-cart.component';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomeComponent,
-    ProfileComponent,
-    ItemDetailComponent,
-    FooterComponent,
-    ContactUsComponent,
-    AboutUsComponent,
-    ShoppingCartComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(),
-  ],
-  providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		RegisterComponent,
+		HomeComponent,
+		ProfileComponent,
+		ItemDetailComponent,
+		FooterComponent,
+		ContactUsComponent,
+		AboutUsComponent,
+		ShoppingCartComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		HttpClientModule,
+		BrowserAnimationsModule, // required animations module
+		ToastrModule.forRoot()
+	],
+	// providers: [authInterceptorProviders],
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}
