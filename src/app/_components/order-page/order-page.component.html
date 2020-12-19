@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="col-md-7 contact-left">
+    <h4>Sipariş formu</h4>
+    <input type="text" name="firstName" placeholder="Adınız" required="" [(ngModel)]="order.first_name" />
+    <input type="email" name="lastName" placeholder="Soyadınız" required="" [(ngModel)]="order.last_name" />
+    <input type="text" name="Email" placeholder="Adres" required="" [(ngModel)]="order.email" />
+    <textarea name="message" placeholder="Adres" required="" [(ngModel)]="order.address"></textarea>
+
+    <div class="form-group">
+      <label for="cc-number" class="control-label">Kart numarası
+      </label>
+      <input id="cc-number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number"
+        placeholder="•••• •••• •••• ••••" ccNumber>
+    </div>
+
+    <div class="form-group">
+      <label for="cc-exp" class="control-label">Kartın son kullanma tarihi</label>
+      <input id="cc-exp" #expireInput type="tel" class="input-lg form-control cc-exp" autocomplete="cc-exp"
+        placeholder="•• / ••" ccExp>
+    </div>
+
+    <div class="form-group">
+      <label for="cc-cvc" class="control-label">CVC / CVV2</label>
+      <input id="cc-cvc" #cvcInput type="tel" class="input-lg form-control cc-cvc" autocomplete="off" placeholder="•••"
+        required ccCVC>
+    </div>
+
+    <input type="submit" value="Gönder" />
+  </div>
+
+  <div class="col-md-4 contact-left">
+    <h4>Toplam Tutar {{app.getTotal() | currency: "₺" }}</h4>
+
+  </div>
+  <div class="clearfix"></div>
+</div>

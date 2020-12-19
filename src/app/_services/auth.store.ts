@@ -22,7 +22,6 @@ export class AuthStore {
 	isLoggedOut$: Observable<boolean>;
 
 	constructor(private http: HttpClient) {
-		console.log('--------------auth store initialize');
 		this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
 		this.isLoggedOut$ = this.isLoggedIn$.pipe(map((loggedIn) => !loggedIn));
@@ -39,13 +38,18 @@ export class AuthStore {
 	}
 
 	login(email: string, password: string): Observable<JWT> {
-		return this.http.post<JWT>(baseUrl + 'auth/jwt/create/', { email, password }).pipe(
-			tap((user) => {
-				this.subject.next(user);
-				localStorage.setItem(AUTH_DATA, JSON.stringify(user));
-			}),
-			shareReplay()
-		);
+		return this.http
+			.post<JWT>(baseUrl + 'auth/jwt/create/', { email, password })
+			.pipe(
+				tap((user) => {
+					this.subject.next(user);
+					localStorage.setItem(AUTH_DATA, JSON.stringify(user));
+					this.connection().subscribe((userInfoFromAPI) => {
+						this.userSubject.next(userInfoFromAPI);
+					});
+				}),
+				shareReplay()
+			);
 	}
 
 	logout() {

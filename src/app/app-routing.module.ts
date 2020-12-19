@@ -9,6 +9,7 @@ import { ItemDetailComponent } from './_components/item-detail/item-detail.compo
 import { ContactUsComponent } from './_components/contact-us/contact-us.component';
 import { AboutUsComponent } from './_components/about-us/about-us.component';
 import { ShoppingCartComponent } from './_components/shopping-cart/shopping-cart.component';
+import { OrderPageComponent } from './_components/order-page/order-page.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
 	{ path: 'urun/:id', component: ItemDetailComponent },
 	{ path: 'iletisim', component: ContactUsComponent },
 	{ path: 'hakkimizda', component: AboutUsComponent },
-	{ path: 'cart', component: ShoppingCartComponent }
+	{ path: 'cart', component: ShoppingCartComponent },
+	{ path: 'siparis', component: OrderPageComponent }
 ];
 
 @NgModule({

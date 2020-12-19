@@ -5,33 +5,27 @@ import { TokenStorageService } from './_services/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from './interfaces/product';
 import { Router } from '@angular/router';
-
+import { User } from './interfaces/user';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit {
-	private roles: string[];
 	isLoggedIn = false;
-	showAdminBoard = false;
-	showModeratorBoard = false;
-	username: string;
 	title = 'KeyShop';
 	reg = false;
 	log = true;
 	form: any = {};
 	isLoginFailed = false;
 	errorMessage = '';
-	dropdown: any;
 	TOKEN_KEY = 'token';
 	cart = 'shopping_cart';
 
 	sepet: Product[] = [];
+	user: User;
 
 	constructor(
-		private tokenStorageService: TokenStorageService,
-		// private authService: AuthService,
 		public authService: AuthStore,
 		private toastr: ToastrService,
 		private router: Router
@@ -48,6 +42,14 @@ export class AppComponent implements OnInit {
 		if (shopCart) {
 			this.sepet = JSON.parse(shopCart);
 		}
+
+		this.authService.userInfo$.subscribe((user: User) => {
+			this.user = user;
+		});
+
+		this.authService.isLoggedIn$.subscribe((data: boolean) => {
+			this.isLoggedIn = data;
+		});
 	}
 
 	logout(): void {
@@ -122,7 +124,6 @@ export class AppComponent implements OnInit {
 	}
 
 	getProductById(id: number): number {
-		console.log('ffff');
 		let value = 1;
 		this.sepet.forEach((element) => {
 			if (element.id === id) {
@@ -132,5 +133,18 @@ export class AppComponent implements OnInit {
 			}
 		});
 		return value;
+	}
+
+	getTotal() {
+		let total = 0;
+		this.sepet.forEach((element) => {
+			if (element.discount_price > 0)
+				total += element.discount_price * element.quantity;
+			else {
+				total += element.price * element.quantity;
+			}
+		});
+
+		return total;
 	}
 }

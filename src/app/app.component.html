@@ -91,13 +91,13 @@
         </div>
       </div>
 
-      <div class="modal-content" *ngIf="authService.isLoggedIn$ | async">
+      <div class="modal-content" *ngIf="isLoggedIn">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             &times;
           </button>
           <h4 class="modal-title" id="myModalLabel">
-            Hoşgeldin {{(authService.userInfo$ | async).first_name}}
+            Hoşgeldin <span *ngIf="user">{{ user.first_name }}</span>
           </h4>
         </div>
         <div class="modal-body modal-body-sub">

@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +22,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 import { ContactUsComponent } from './_components/contact-us/contact-us.component';
 import { AboutUsComponent } from './_components/about-us/about-us.component';
 import { ShoppingCartComponent } from './_components/shopping-cart/shopping-cart.component';
+import { OrderPageComponent } from './_components/order-page/order-page.component';
 
 @NgModule({
 	declarations: [
@@ -32,7 +35,8 @@ import { ShoppingCartComponent } from './_components/shopping-cart/shopping-cart
 		FooterComponent,
 		ContactUsComponent,
 		AboutUsComponent,
-		ShoppingCartComponent
+		ShoppingCartComponent,
+		OrderPageComponent
 	],
 	imports: [
 		BrowserModule,
@@ -40,7 +44,9 @@ import { ShoppingCartComponent } from './_components/shopping-cart/shopping-cart
 		FormsModule,
 		HttpClientModule,
 		BrowserAnimationsModule, // required animations module
-		ToastrModule.forRoot()
+		ToastrModule.forRoot(),
+		ReactiveFormsModule,
+		CreditCardDirectivesModule
 	],
 	// providers: [authInterceptorProviders],
 	bootstrap: [ AppComponent ]
