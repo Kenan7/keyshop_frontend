@@ -1,7 +1,8 @@
 export interface Product {
 	id: number;
 	item_name: string;
-	stock_quantity: number;
+	quantity: number;
+	stock_number: number;
 	description: string;
 	price: number;
 	discount_price: number;
