@@ -20,7 +20,11 @@ export class HomeComponent implements OnInit {
 	categories: any;
 	result: any = [];
 
-	constructor(private userService: UserService, private productService: ProductService, private app: AppComponent) {}
+	constructor(
+		private userService: UserService,
+		private productService: ProductService,
+		private app: AppComponent
+	) {}
 
 	ngOnInit(): void {
 		this.productService.getProducts().subscribe((data) => {

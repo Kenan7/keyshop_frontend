@@ -3,7 +3,7 @@ import { AuthService } from './_services/auth.service';
 import { AuthStore } from './_services/auth.store';
 import { TokenStorageService } from './_services/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from './interfaces/product';
+import { Product, ProductList } from './interfaces/product';
 import { Router } from '@angular/router';
 import { User } from './interfaces/user';
 @Component({
@@ -24,6 +24,8 @@ export class AppComponent implements OnInit {
 
 	sepet: Product[] = [];
 	user: User;
+	values: ProductList[] = [];
+	tempP: ProductList;
 
 	constructor(
 		public authService: AuthStore,
@@ -50,6 +52,20 @@ export class AppComponent implements OnInit {
 		this.authService.isLoggedIn$.subscribe((data: boolean) => {
 			this.isLoggedIn = data;
 		});
+	}
+
+	convertTypes() {
+		this.sepet.map((item) => {
+			console.log(item);
+			let tempP = {
+				quantity: item.quantity,
+				product: item
+			};
+			const finalItem = tempP as ProductList;
+			this.values.push(finalItem);
+		});
+
+		return this.values;
 	}
 
 	logout(): void {

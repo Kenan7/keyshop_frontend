@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { AuthStore } from '../../_services/auth.store';
 import { User } from '../../interfaces/user';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { ProductService } from '../../_services/product.service';
+import { FinalOrder, ProductList } from 'src/app/interfaces/product';
+import { ToastrService } from 'ngx-toastr';
+import { error } from 'jquery';
 @Component({
 	selector: 'app-order-page',
 	templateUrl: './order-page.component.html',
@@ -11,15 +13,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class OrderPageComponent implements OnInit {
 	user: User;
-	public demoForm: FormGroup;
-	public submitted = false;
 
-	order: any = {};
+	order: FinalOrder;
+	values: ProductList[] = [];
+
+	address: string;
 
 	constructor(
 		public app: AppComponent,
 		public authService: AuthStore,
-		private fb: FormBuilder
+		private productService: ProductService,
+		private toastr: ToastrService
 	) {}
 
 	ngOnInit(): void {
@@ -28,7 +32,28 @@ export class OrderPageComponent implements OnInit {
 		});
 	}
 
-	public onSubmit() {
-		this.submitted = true;
+	async onSubmit() {
+		await this.app.sepet.map((item) => {
+			console.log(item);
+			let tempP = {
+				quantity: item.quantity,
+				product: item.id
+			};
+			const finalItem = tempP as ProductList;
+			this.values.push(finalItem);
+		});
+
+		let obj = {
+			product_list: this.values,
+			address: this.address
+		};
+		const finalItemm = (obj as unknown) as FinalOrder;
+
+		this.productService.orderProducts(finalItemm).subscribe((data) => {
+			this.toastr.success('Siparişiniz alındı');
+		}),
+			(error) => {
+				this.toastr.success('Bir hata oldu');
+			};
 	}
 }

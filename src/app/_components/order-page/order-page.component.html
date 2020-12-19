@@ -1,10 +1,7 @@
 <div class="container">
   <div class="col-md-7 contact-left">
     <h4>Sipariş formu</h4>
-    <input type="text" name="firstName" placeholder="Adınız" required="" [(ngModel)]="order.first_name" />
-    <input type="email" name="lastName" placeholder="Soyadınız" required="" [(ngModel)]="order.last_name" />
-    <input type="text" name="Email" placeholder="Adres" required="" [(ngModel)]="order.email" />
-    <textarea name="message" placeholder="Adres" required="" [(ngModel)]="order.address"></textarea>
+    <textarea name="message" placeholder="Adres" required="" [(ngModel)]="address"></textarea>
 
     <div class="form-group">
       <label for="cc-number" class="control-label">Kart numarası
@@ -25,7 +22,7 @@
         required ccCVC>
     </div>
 
-    <input type="submit" value="Gönder" />
+    <input type="submit" value="Gönder" (click)="onSubmit()" />
   </div>
 
   <div class="col-md-4 contact-left">
