@@ -1,56 +1,67 @@
-
-<div class="container mb-4" *ngIf="sepet.length > 0">
+<div class="container mb-4" *ngIf="this.app.sepet.length > 0">
   <div class="row">
-      <div class="col-12">
-          <div class="table-responsive">
-              <table class="table table-striped">
-                  <thead>
-                      <tr>
-                          <th scope="col"> </th>
-                          <th scope="col">Ürün</th>
-                          <th scope="col">Stock Durumu</th>
-                          <th scope="col" class="text-center">Adet</th>
-                          <th scope="col" class="text-right">Fiyat</th>
-                          <th> </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let product of sepet">
-                          <td><img
-                            [src]="product.image"
-                            class="img-responsive"
-                            alt=""
-                            style='width:10%'
-                          /> </td>
-                          <td><p>{{ product.item_name }}</p></td>
-                          <td>Mevcut</td>
-                          <td><input class="form-control" type="text" [value]="product.amount" /></td>
-                          <td class="text-right">{{ product.price }}</td>
-                          <td class="text-right"><button class="btn btn-sm btn-danger" (click)="removeFromCart(product.id)"><i class="fa fa-trash"></i> </button> </td>
-                      </tr>
-                      <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td><strong>Toplam: </strong></td>
-                          <td class="text-right"><strong>346,90 €</strong></td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"> </th>
+              <th scope="col">Ürün</th>
+              <th scope="col">Stock Durumu</th>
+              <th scope="col" class="text-center">Adet</th>
+              <th scope="col" class="text-right">Fiyat</th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of this.app.sepet">
+              <td><img [src]="product.image" class="img-responsive" alt="" style='width:10%' /> </td>
+              <td>
+                <p>{{ product.item_name }}</p>
+              </td>
+              <td>Mevcut</td>
+              <td><input class="form-control" type="number" [value]="product.quantity"
+                  (change)="modifyQuantity(product.id)" [id]="product.id" /></td>
+              <td class="text-right">
+                <div class="simpleCart_shelfItem">
+                  <p>
+                    <span *ngIf="product.discount_price">{{
+                      product.price | currency: "₺"
+                      }}</span>
+                    <i class="item_price" *ngIf="product.discount_price">{{
+                      product.discount_price | currency: "₺"
+                      }}</i>
+                    <i class="item_price" *ngIf="!product.discount_price">{{
+                      product.price | currency: "₺"
+                      }}</i>
+                  </p>
+                </div>
+              </td>
+              <td class="text-right"><button class="btn btn-sm btn-danger" (click)="removeFromCart(product.id)"><i
+                    class="fa fa-trash"></i> </button> </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><strong>Toplam: </strong></td>
+              <td class="text-right"><strong>{{ getTotal() | currency: "₺"}}</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
 
   </div>
   <div class="col mb-2">
-  <div class="row">
-    <div class="col-sm-12  col-md-6">
+    <div class="row">
+      <div class="col-sm-12  col-md-6">
         <button class="btn btn-block btn-light">Alışverişe Devam Et</button>
-    </div>
-    <div class="col-sm-12 col-md-6 text-right">
+      </div>
+      <div class="col-sm-12 col-md-6 text-right">
         <button class="btn btn-lg btn-block btn-success text-uppercase">Alışverişi Tamamla</button>
+      </div>
     </div>
-  </div>
   </div>
 </div>
-

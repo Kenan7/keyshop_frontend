@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
-import { Product } from '../../interfaces/product';
 
 @Component({
 	selector: 'app-shopping-cart',
@@ -8,27 +7,53 @@ import { Product } from '../../interfaces/product';
 	styleUrls: [ './shopping-cart.component.css' ]
 })
 export class ShoppingCartComponent implements OnInit {
-	sepet: Product[] = [];
-	constructor(private app: AppComponent) {}
+	constructor(public app: AppComponent) {}
 
-	ngOnInit(): void {
-		this.sepet = this.app.sepet;
-	}
+	ngOnInit(): void {}
 
 	getProductById(id: number): any {
-		let elem: any;
-		this.sepet.forEach((element) => {
+		this.app.sepet.forEach((element) => {
+			console.log(
+				'checking element -> ' + element + ' ' + element.id + ' against: ' + id
+			);
 			if (element.id === id) {
-				elem.obj = element;
-				elem.id = this.sepet.indexOf(element);
-				return elem;
+				return this.app.sepet.indexOf(element);
 			}
 		});
 	}
 
-	removeFromCart(id: number) {
+	modifyProduct(id: number, value: number): void {
+		this.app.sepet.forEach((element) => {
+			if (element.id === id) {
+				element.quantity = value;
+			}
+		});
+	}
+
+	removeFromCart(id: number): void {
 		let item = this.getProductById(id);
-		console.log(item);
-		this.sepet.splice(item.id, 1);
+		this.app.sepet.splice(item, 1);
+		this.app.updateStorage();
+	}
+
+	modifyQuantity(id: any): void {
+		let value = parseInt(
+			(<HTMLInputElement>document.getElementById(id)).value
+		);
+		this.modifyProduct(id, value);
+		this.app.updateStorage();
+	}
+
+	getTotal() {
+		let total = 0;
+		this.app.sepet.forEach((element) => {
+			if (element.discount_price > 0)
+				total += element.discount_price * element.quantity;
+			else {
+				total += element.price * element.quantity;
+			}
+		});
+
+		return total;
 	}
 }

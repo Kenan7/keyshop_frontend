@@ -56,10 +56,10 @@ export class HomeComponent implements OnInit {
 		if (this.app.sepet.length > 0) {
 			const id = item.id;
 			this.app.sepet.forEach((element) => {
-				if (item.id !== element.id) {
-					this.app.sepet.push(item);
+				if (item.id === element.id) {
+					element.quantity += 1;
 				} else {
-					element.amount += 1;
+					this.app.sepet.push(item);
 				}
 			});
 		} else {

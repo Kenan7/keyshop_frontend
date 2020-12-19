@@ -1,7 +1,7 @@
 <!-- banner -->
 <div class="banner banner10">
   <div class="container">
-    <h2>Single Page</h2>
+    <!-- <h2>Ürün detayları</h2> -->
   </div>
 </div>
 <!-- //banner -->
@@ -10,13 +10,11 @@
   <div class="container">
     <ul>
       <li>
-        <a routerLink="/"
-          ><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-          Home</a
-        >
+        <a routerLink="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          Ana Sayfa</a>
         <i>/</i>
       </li>
-      <li>Single Page</li>
+      <li>Ürün detayları</li>
     </ul>
   </div>
 </div>
@@ -28,12 +26,7 @@
       <div class="flexslider">
         <ul class="slides">
           <div class="thumb-image">
-            <img
-              [src]="item.image"
-              data-imagezoom="true"
-              class="img-responsive"
-              alt=""
-            />
+            <img [src]="item.image" data-imagezoom="true" class="img-responsive" alt="" />
           </div>
         </ul>
       </div>
@@ -109,48 +102,46 @@
         <h5>RAM :</h5>
         <div class="colr ert">
           <div class="check">
-            <label class="checkbox"
-              ><input type="checkbox" name="checkbox" checked="" /><i> </i>3
-              GB</label
-            >
+            <label class="checkbox"><input type="checkbox" name="checkbox" checked="" /><i> </i>3
+              GB</label>
           </div>
         </div>
         <div class="colr">
           <div class="check">
-            <label class="checkbox"
-              ><input type="checkbox" name="checkbox" /><i> </i>2 GB</label
-            >
+            <label class="checkbox"><input type="checkbox" name="checkbox" /><i> </i>2 GB</label>
           </div>
         </div>
         <div class="colr">
           <div class="check">
-            <label class="checkbox"
-              ><input type="checkbox" name="checkbox" /><i> </i>1 GB</label
-            >
+            <label class="checkbox"><input type="checkbox" name="checkbox" /><i> </i>1 GB</label>
           </div>
         </div>
         <div class="clearfix"></div>
+      </div>
+
+      <div>
+        <div class="input-group half">
+          <span class="input-group-addon pnt" (click)="increaseQuantity(item.id)"><i class="fa fa-plus"></i></span>
+          <input type="number" class="w3ls-cart form-control" [value]="item.quantity" />
+          <span class="input-group-addon pnt" (click)="decreaseQuantity(item.id)"><i
+              class="glyphicon glyphicon-minus"></i></span>
+        </div>
       </div>
       <div class="simpleCart_shelfItem">
         <p>
           <span *ngIf="item.discount_price">{{
             item.price | currency: "₺"
-          }}</span>
+            }}</span>
           <i class="item_price" *ngIf="item.discount_price">{{
             item.discount_price | currency: "₺"
-          }}</i>
+            }}</i>
           <i class="item_price" *ngIf="!item.discount_price">{{
             item.price | currency: "₺"
-          }}</i>
+            }}</i>
         </p>
-        <form action="#" method="post">
-          <input type="hidden" name="cmd" value="_cart" />
-          <input type="hidden" name="add" value="1" />
-          <input type="hidden" name="w3ls_item" value="Smart Phone" />
-          <input type="hidden" name="amount" value="450.00" />
-          <button type="submit" class="w3ls-cart">Add to cart</button>
-        </form>
+        <button type="submit" class="w3ls-cart">Karta ekle</button>
       </div>
+
     </div>
     <div class="clearfix"></div>
   </div>
@@ -339,22 +330,11 @@ Add Your Review</textarea
   </div>
 </div> -->
 
-<div
-  class="modal video-modal fade"
-  id="myModal6"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModal6"
->
+<div class="modal video-modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModal6">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -424,22 +404,11 @@ Add Your Review</textarea
     </div>
   </div>
 </div>
-<div
-  class="modal video-modal fade"
-  id="myModal5"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModal5"
->
+<div class="modal video-modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModal5">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -509,22 +478,11 @@ Add Your Review</textarea
     </div>
   </div>
 </div>
-<div
-  class="modal video-modal fade"
-  id="myModal4"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModal4"
->
+<div class="modal video-modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModal4">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -594,22 +552,11 @@ Add Your Review</textarea
     </div>
   </div>
 </div>
-<div
-  class="modal video-modal fade"
-  id="myModal3"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModal3"
->
+<div class="modal video-modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModal3">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>

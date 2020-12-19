@@ -64,7 +64,9 @@ export class AppComponent implements OnInit {
 	}
 
 	async delay(ms: number) {
-		await new Promise((resolve) => setTimeout(() => resolve(), ms)).then(() => {});
+		await new Promise((resolve) =>
+			setTimeout(() => resolve(), ms)
+		).then(() => {});
 	}
 
 	onSubmit(): void {
@@ -113,5 +115,22 @@ export class AppComponent implements OnInit {
 
 	reloadPage(): void {
 		window.location.reload();
+	}
+
+	updateStorage() {
+		localStorage.setItem(this.cart, JSON.stringify(this.sepet));
+	}
+
+	getProductById(id: number): number {
+		console.log('ffff');
+		let value = 1;
+		this.sepet.forEach((element) => {
+			if (element.id === id) {
+				console.log(element.id);
+
+				return element.quantity;
+			}
+		});
+		return value;
 	}
 }

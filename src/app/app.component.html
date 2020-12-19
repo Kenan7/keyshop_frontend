@@ -1,85 +1,38 @@
 <div id="app">
   <!-- header modal -->
-  <div
-    class="modal fade"
-    id="myModal88"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myModal88"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" *ngIf="authService.isLoggedOut$ | async">
         <div class="modal-header">
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-hidden="true"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             &times;
           </button>
-          <h4 class="modal-title" id="myModalLabel" >
+          <h4 class="modal-title" id="myModalLabel">
             Bekleme! Hemen giriş yap.
           </h4>
         </div>
         <div class="modal-body modal-body-sub">
           <div class="row">
-            <div
-              class="col-md-8 modal_body_left modal_body_left1"
-              style="border-right: 1px dotted #c2c2c2; padding-right: 3em"
-            >
+            <div class="col-md-8 modal_body_left modal_body_left1"
+              style="border-right: 1px dotted #c2c2c2; padding-right: 3em">
               <div class="sap_tabs">
-                <div
-                  id="horizontalTab"
-                  style="display: block; width: 100%; margin: 0px"
-                >
+                <div id="horizontalTab" style="display: block; width: 100%; margin: 0px">
                   <ul>
-                    <li
-                      class="resp-tab-itemm"
-                      aria-controls="tab_item-0"
-                      (click)="showLog()"
-                    >
+                    <li class="resp-tab-itemm" aria-controls="tab_item-0" (click)="showLog()">
                       <span>Giriş Yap</span>
                     </li>
-                    <li
-                      class="resp-tab-itemm"
-                      aria-controls="tab_item-1"
-                      (click)="showReg()"
-                    >
+                    <li class="resp-tab-itemm" aria-controls="tab_item-1" (click)="showReg()">
                       <span>Kaydol</span>
                     </li>
                   </ul>
-                  <div
-                    class="tab-1 resp-tab-contenttt"
-                    aria-labelledby="tab_item-0"
-                    [hidden]="!log"
-                  >
+                  <div class="tab-1 resp-tab-contenttt" aria-labelledby="tab_item-0" [hidden]="!log">
                     <div class="facts">
                       <div class="register">
-                        <form
-                          name="form"
-                          (ngSubmit)="onSubmit()"
-                          #f="ngForm"
-                          novalidate
-                        >
-                          <input
-                            name="Email"
-                            placeholder="Email Adresi"
-                            type="text"
-                            name="email"
-                            [(ngModel)]="form.email"
-                            required
-                            #email="ngModel"
-                          />
-                          <input
-                            name="Password"
-                            placeholder="Şifre"
-                            type="password"
-                            [(ngModel)]="form.password"
-                            required
-                            #password="ngModel"
-                          />
+                        <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+                          <input name="Email" placeholder="Email Adresi" type="text" name="email"
+                            [(ngModel)]="form.email" required #email="ngModel" />
+                          <input name="Password" placeholder="Şifre" type="password" [(ngModel)]="form.password"
+                            required #password="ngModel" />
                           <div class="sign-up">
                             <input type="submit" value="Giriş Yap" />
                           </div>
@@ -87,44 +40,18 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="tab-2 resp-tab-contenttt"
-                    aria-labelledby="tab_item-1"
-                    [hidden]="log"
-                  >
+                  <div class="tab-2 resp-tab-contenttt" aria-labelledby="tab_item-1" [hidden]="log">
                     <div class="facts">
                       <div class="register">
                         <form (ngSubmit)="onRegister()">
-                          <input
-                            placeholder="Adı"
-                            name="firstName"
-                            type="text"
-                            [(ngModel)]="form.first_name"
-                            required=""
-                          />
-                          <input
-                            placeholder="Soyadı"
-                            name="lastName"
-                            type="email"
-                            [(ngModel)]="form.last_name"
-                            required=""
-                          />
-                          <input
-                            placeholder="Email Adresi"
-                            name="Email"
-                            type="email"
-                            required=""
-                            [(ngModel)]="form.email"
-
-                          />
-                          <input
-                            placeholder="Şifre"
-                            name="Password"
-                            type="password"
-                            required=""
-                            [(ngModel)]="form.password"
-
-                          />
+                          <input placeholder="Adı" name="firstName" type="text" [(ngModel)]="form.first_name"
+                            required="" />
+                          <input placeholder="Soyadı" name="lastName" type="email" [(ngModel)]="form.last_name"
+                            required="" />
+                          <input placeholder="Email Adresi" name="Email" type="email" required=""
+                            [(ngModel)]="form.email" />
+                          <input placeholder="Şifre" name="Password" type="password" required=""
+                            [(ngModel)]="form.password" />
                           <div class="sign-up">
                             <input type="submit" value="Hesap Oluştur." />
                           </div>
@@ -166,12 +93,7 @@
 
       <div class="modal-content" *ngIf="authService.isLoggedIn$ | async">
         <div class="modal-header">
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-hidden="true"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             &times;
           </button>
           <h4 class="modal-title" id="myModalLabel">
@@ -180,13 +102,11 @@
         </div>
         <div class="modal-body modal-body-sub">
           <div class="row">
-            <div
-              class="col-md-12 modal_body_left modal_body_left1"
-              style="border-right: 1px dotted #c2c2c2; padding-right: 3em"
-            >
-            <div class="sign-up">
-              <input (click)="logout()" type="submit" value="Çıkış yap" />
-            </div>
+            <div class="col-md-12 modal_body_left modal_body_left1"
+              style="border-right: 1px dotted #c2c2c2; padding-right: 3em">
+              <div class="sign-up">
+                <input (click)="logout()" type="submit" value="Çıkış yap" />
+              </div>
             </div>
 
           </div>
@@ -199,24 +119,18 @@
   <div class="header" id="home1">
     <div class="container">
       <div class="w3l_login">
-        <a href="#" data-toggle="modal" data-target="#myModal88"
-          ><span class="glyphicon glyphicon-user" aria-hidden="true"></span
-        ></a>
+        <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user"
+            aria-hidden="true"></span></a>
       </div>
       <div class="w3l_logo">
         <h1>
-          <a routerLink="/"
-            >KeyShop<span class="ozel-font"
-              >Senin mağazan. Senin yerin.</span
-            ></a
-          >
+          <a routerLink="/">KeyShop<span class="ozel-font">Senin mağazan. Senin yerin.</span></a>
         </h1>
       </div>
       <div class="search">
         <input class="search_box" type="checkbox" id="search_box" />
-        <label class="icon-search" for="search_box"
-          ><span class="glyphicon glyphicon-search" aria-hidden="true"></span
-        ></label>
+        <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search"
+            aria-hidden="true"></span></label>
         <div class="search_form">
           <form action="#" method="post">
             <input type="text" name="Search" placeholder="Ne arıyorsun?" />
@@ -225,11 +139,11 @@
         </div>
       </div>
       <div class="cart cart box_1">
-          <button class="w3view-cart" type="submit" name="submit" value="" routerLink="/cart">
-            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-          </button>
+        <button class="w3view-cart" type="submit" name="submit" value="" routerLink="/cart">
+          <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+        </button>
 
-          <!-- <div *ngIf="dropdown">
+        <!-- <div *ngIf="dropdown">
             <div *ngFor="let product of sepet">
               <p>{{ product.item_name }}</p>
               <p> {{ product.price }}</p>
@@ -245,12 +159,8 @@
       <nav class="navbar navbar-default">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header nav_2">
-          <button
-            type="button"
-            class="navbar-toggle collapsed navbar-toggle1"
-            data-toggle="collapse"
-            data-target="#bs-megadropdown-tabs"
-          >
+          <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+            data-target="#bs-megadropdown-tabs">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -262,9 +172,7 @@
             <li><a routerLink="/">Anasayfa</a></li>
             <!-- Mega Menu -->
             <li class="dropdown">
-              <a href="prof" class="dropdown-toggle act" data-toggle="dropdown"
-                >Ürünler <b class="caret"></b
-              ></a>
+              <a href="prof" class="dropdown-toggle" data-toggle="dropdown">Ürünler <b class="caret"></b></a>
               <ul class="dropdown-menu multi-column columns-3">
                 <div class="row">
                   <div class="col-sm-3">
@@ -274,17 +182,13 @@
                         <a href="products.html">Microsoft Office 365</a>
                       </li>
                       <li>
-                        <a href="products.html"
-                          >Microsoft Word <span>Yeni</span></a
-                        >
+                        <a href="products.html">Microsoft Word <span>Yeni</span></a>
                       </li>
                       <li>
                         <a href="products.html">Microsoft Excel </a>
                       </li>
                       <li>
-                        <a href="products.html"
-                          >Microsoft PowerPoint<span>Yeni</span></a
-                        >
+                        <a href="products.html">Microsoft PowerPoint<span>Yeni</span></a>
                       </li>
                     </ul>
                   </div>
