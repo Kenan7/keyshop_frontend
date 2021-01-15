@@ -7,7 +7,6 @@ export interface Product {
 	price: number;
 	discount_price: number;
 	image: string;
-	quantity: number;
 }
 
 export interface ProductList {
@@ -17,5 +16,6 @@ export interface ProductList {
 
 export interface FinalOrder {
 	address: string;
-	product_list: ProductList;
+	product_list: ProductList[];
+	user: number;
 }

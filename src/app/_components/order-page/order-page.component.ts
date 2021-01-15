@@ -45,7 +45,8 @@ export class OrderPageComponent implements OnInit {
 
 		let obj = {
 			product_list: this.values,
-			address: this.address
+			address: this.address,
+			user: this.user.id
 		};
 		const finalItemm = (obj as unknown) as FinalOrder;
 

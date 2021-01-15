@@ -54,20 +54,6 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	convertTypes() {
-		this.sepet.map((item) => {
-			console.log(item);
-			let tempP = {
-				quantity: item.quantity,
-				product: item
-			};
-			const finalItem = tempP as ProductList;
-			this.values.push(finalItem);
-		});
-
-		return this.values;
-	}
-
 	logout(): void {
 		this.authService.logout();
 	}

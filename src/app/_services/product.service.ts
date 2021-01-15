@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import baseUrl from './api';
-import { ProductList } from '../interfaces/product';
+import { FinalOrder } from '../interfaces/product';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,7 +23,7 @@ export class ProductService {
 	}
 
 	orderProducts(request: any): Observable<any> {
-		return this.http.post<ProductList>(baseUrl + 'order/create/', request, {
+		return this.http.post<FinalOrder>(baseUrl + 'order/create/', request, {
 			headers: httpOptions.headers
 		});
 	}
