@@ -5,6 +5,7 @@ import { ProductService } from '../_services/product.service';
 import { AppComponent } from '../app.component';
 
 import { Product } from '../interfaces/product';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
 	constructor(
 		private userService: UserService,
 		private productService: ProductService,
-		private app: AppComponent
+		private app: AppComponent,
+		private toastr: ToastrService
 	) {}
 
 	ngOnInit(): void {
@@ -70,5 +72,6 @@ export class HomeComponent implements OnInit {
 			this.app.sepet.push(item);
 		}
 		localStorage.setItem(this.app.cart, JSON.stringify(this.app.sepet));
+		this.toastr.success('Eklendi', '', { timeOut: 800 });
 	}
 }

@@ -17,7 +17,7 @@ export class ItemDetailComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private itemService: ItemDetailService,
-		private app: AppComponent
+		public app: AppComponent
 	) {}
 
 	ngOnInit(): void {
@@ -47,5 +47,21 @@ export class ItemDetailComponent implements OnInit {
 			}
 		});
 		this.app.updateStorage();
+	}
+
+	addToCart(item: Product) {
+		if (this.app.sepet.length > 0) {
+			const id = item.id;
+			this.app.sepet.forEach((element) => {
+				if (item.id === element.id) {
+					element.quantity += 1;
+				} else {
+					this.app.sepet.push(item);
+				}
+			});
+		} else {
+			this.app.sepet.push(item);
+		}
+		localStorage.setItem(this.app.cart, JSON.stringify(this.app.sepet));
 	}
 }
