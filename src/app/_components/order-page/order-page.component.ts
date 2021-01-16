@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { AuthStore } from '../../_services/auth.store';
 import { User } from '../../interfaces/user';
@@ -19,6 +19,9 @@ export class OrderPageComponent implements OnInit {
 
 	address: string;
 
+	// @ViewChild('myModal88', { static: true })
+	// myModal: ElementRef;
+
 	constructor(
 		public app: AppComponent,
 		public authService: AuthStore,
@@ -33,28 +36,33 @@ export class OrderPageComponent implements OnInit {
 	}
 
 	async onSubmit() {
-		await this.app.sepet.map((item) => {
-			console.log(item);
-			let tempP = {
-				quantity: item.quantity,
-				product: item.id
-			};
-			const finalItem = tempP as ProductList;
-			this.values.push(finalItem);
-		});
+		if (!this.user) {
+			this.toastr.info('Sipariş vermek için giriş yapmanız gerekiyor');
+			// this.myModal.nativeElement.click();
+		} else {
+			await this.app.sepet.map((item) => {
+				console.log(item);
+				let tempP = {
+					quantity: item.quantity,
+					product: item.id
+				};
+				const finalItem = tempP as ProductList;
+				this.values.push(finalItem);
+			});
 
-		let obj = {
-			product_list: this.values,
-			address: this.address,
-			user: this.user.id
-		};
-		const finalItemm = (obj as unknown) as FinalOrder;
-
-		this.productService.orderProducts(finalItemm).subscribe((data) => {
-			this.toastr.success('Siparişiniz alındı');
-		}),
-			(error) => {
-				this.toastr.success('Bir hata oldu');
+			let obj = {
+				product_list: this.values,
+				address: this.address,
+				user: this.user.id
 			};
+			const finalItemm = (obj as unknown) as FinalOrder;
+
+			this.productService.orderProducts(finalItemm).subscribe((data) => {
+				this.toastr.success('Siparişiniz alındı');
+			}),
+				(error) => {
+					this.toastr.success('Bir hata oldu');
+				};
+		}
 	}
 }
