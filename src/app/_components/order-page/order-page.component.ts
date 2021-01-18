@@ -19,9 +19,6 @@ export class OrderPageComponent implements OnInit {
 
 	address: string;
 
-	// @ViewChild('myModal88', { static: true })
-	// myModal: ElementRef;
-
 	constructor(
 		public app: AppComponent,
 		public authService: AuthStore,
@@ -38,7 +35,6 @@ export class OrderPageComponent implements OnInit {
 	async onSubmit() {
 		if (!this.user) {
 			this.toastr.info('Sipariş vermek için giriş yapmanız gerekiyor');
-			// this.myModal.nativeElement.click();
 		} else {
 			await this.app.sepet.map((item) => {
 				console.log(item);

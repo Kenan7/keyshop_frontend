@@ -13,9 +13,6 @@ export class ShoppingCartComponent implements OnInit {
 
 	getProductById(id: number): any {
 		this.app.sepet.forEach((element) => {
-			console.log(
-				'checking element -> ' + element + ' ' + element.id + ' against: ' + id
-			);
 			if (element.id === id) {
 				return this.app.sepet.indexOf(element);
 			}

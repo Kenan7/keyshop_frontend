@@ -33,7 +33,6 @@ export class AuthStore {
 			this.connection().subscribe((userInfoFromAPI) => {
 				this.userSubject.next(userInfoFromAPI);
 			});
-			// this.userInfo$ = this
 		}
 	}
 
@@ -59,13 +58,6 @@ export class AuthStore {
 
 	register(form): Observable<User> {
 		return this.http.post<User>(baseUrl + 'auth/users/', form);
-		// .pipe
-		// // tap((user) => {
-		// // 	// this.subject.next(user);
-		// // 	// localStorage.setItem(AUTH_DATA, JSON.stringify(user));
-		// // }),
-		// // shareReplay()
-		// ();
 	}
 
 	connection(): Observable<any> {
